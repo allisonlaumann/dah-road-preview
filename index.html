@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#00704A">
+  <meta name="robots" content="noindex, nofollow"><!-- preview: keep out of search results until launch -->
+  <title>DAH Road — On dah road again? Be ready.</title>
+  <link rel="icon" href="logo/dah-road-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="logo/dah-road-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+</head>
+<body>
+  <div class="sample-ribbon">Preview: real venue addresses from our teams, plus sample venues, posts and businesses that are made up</div>
+
+  <header class="topbar">
+    <a href="#/" class="brand" aria-label="Home">
+      <img class="brand-mark" src="logo/dah-road-icon.svg" alt="" width="34" height="34">
+      <span class="brand-name" data-site-name></span>
+    </a>
+    <a href="#/me" class="me-chip" id="meChip">Join</a>
+  </header>
+
+  <main id="app" class="wrap"></main>
+
+  <nav class="tabbar" aria-label="Main">
+    <a href="#/" data-tab="home"><span aria-hidden="true">🔎</span>Find</a>
+    <a href="#/tournaments" data-tab="tournaments"><span aria-hidden="true">🏆</span>Tournaments</a>
+    <a href="#/submit" data-tab="submit"><span aria-hidden="true">➕</span>Add info</a>
+    <a href="#/me" data-tab="me"><span aria-hidden="true">⭐</span>My card</a>
+  </nav>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js?v=5"></script>
+  <script src="js/venues-real.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
+</body>
+</html>
