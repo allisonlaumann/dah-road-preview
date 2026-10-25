@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>DA Road logo options</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --sign:#00704A; --river:#00A651; --sky:#41B6E6; --skylite:#B3DDF2; --star:#E4002B; --ink:#10231A; --bg:#F3F6F4; --line:#DCE3DF; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 Inter, system-ui, sans-serif; padding:24px 16px 60px; }
+  .wrap { max-width:780px; margin:0 auto; }
+  h1 { font:800 2rem/1 "Barlow Condensed", sans-serif; text-transform:uppercase; margin:0 0 6px; }
+  h2 { font:800 1.45rem/1 "Barlow Condensed", sans-serif; text-transform:uppercase; margin:0 0 4px; }
+  .muted { color:#55615A; margin:0 0 14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; margin-bottom:20px; }
+  .row { display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+  .big { width:130px; height:130px; flex:none; }
+  .lockups { flex:1; min-width:270px; display:grid; gap:10px; }
+  .lock { border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:12px; }
+  .lock.dark { background:var(--sign); } .lock.light { background:#fff; border:1px solid var(--line); }
+  .lock svg { width:52px; height:52px; flex:none; }
+  .word { font:800 2.1rem/1 "Barlow Condensed", sans-serif; letter-spacing:.03em; text-transform:uppercase; }
+  .dark .word { color:#fff; } .dark .word span { color:var(--skylite); font-weight:700; }
+  .light .word { color:var(--sign); } .light .word span { color:var(--sky); font-weight:700; }
+  .sizes { display:flex; gap:14px; align-items:flex-end; margin-top:14px; font-size:.78rem; color:#55615A; flex-wrap:wrap; }
+  .sizes div { text-align:center; } .sizes svg { display:block; margin:0 auto 4px; }
+  .phone { display:flex; gap:10px; background:linear-gradient(160deg,#3d4a44,#1b2420); padding:12px 14px; border-radius:14px; color:#fff; font-size:.72rem; }
+  .phone div { width:56px; text-align:center; } .phone svg, .phone i { display:block; width:52px; height:52px; margin:0 auto 4px; border-radius:12px; } .phone i { background:rgba(255,255,255,.18); }
+</style>
+</head>
+<body><div class="wrap">
+  <h1>DA Road: DR logo options</h1>
+  <p class="muted">Each mark is built on “DR” in the Chicago greens, with the city flag's sky blue and red star.</p>
+  <div id="opts"></div>
+</div>
+<script>
+function star(cx, cy, R, r = R * 0.5) {
+  let d = "";
+  for (let i = 0; i < 12; i++) {
+    const a = (-90 + i * 30) * Math.PI / 180, rad = i % 2 ? r : R;
+    d += (i ? "L" : "M") + (cx + rad * Math.cos(a)).toFixed(2) + " " + (cy + rad * Math.sin(a)).toFixed(2);
+  }
+  return d + "Z";
+}
+
+const MARKS = {
+  // 1. Road between the letters: D and R on either side of a road running to the Chicago star
+  between: `<rect width="100" height="100" rx="20" fill="#00704A"/>
+    <path d="M36 94 L47 30 H53 L64 94 Z" fill="#0B4D35"/>
+    <g fill="#fff"><rect x="49.2" y="40" width="1.6" height="6" rx=".8"/><rect x="48.9" y="54" width="2.2" height="9" rx="1"/><rect x="48.5" y="72" width="3" height="13" rx="1.4"/></g>
+    <path d="${star(50, 19, 10)}" fill="#E4002B"/>
+    <path d="M10 34 V76 M10 34 h3 a21 21 0 0 1 0 42 h-3" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M66 76 V34 h8 a10.5 10.5 0 0 1 0 21 h-8 M73 55 L88 76" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>`,
+
+  // 2. Road leg R: the R's leg becomes a road heading off, with a center line
+  roadleg: `<rect width="100" height="100" rx="20" fill="#00704A"/>
+    <path d="M14 26 V74 M14 26 h5 a24 24 0 0 1 0 48 h-5" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M58 74 V26 h9 a12 12 0 0 1 0 24 h-9" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M66 50 L90 86" stroke="#41B6E6" stroke-width="15" stroke-linecap="round"/>
+    <path d="M66 50 L90 86" stroke="#fff" stroke-width="2.2" stroke-dasharray="5 5" stroke-linecap="round"/>
+    <path d="${star(84, 18, 8)}" fill="#E4002B"/>`,
+
+  // 3. Highway sign: green guide sign, "DR" in sign lettering, Chicago star
+  sign: `<rect width="100" height="100" rx="20" fill="#00704A"/>
+    <rect x="7" y="7" width="86" height="86" rx="14" fill="none" stroke="#fff" stroke-width="3.5"/>
+    <text x="46" y="71" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="56" fill="#fff" letter-spacing="1">DR</text>
+    <path d="${star(80, 25, 9)}" fill="#E4002B"/>`,
+
+  // 4. Star D + R on white: the D holds the red star ("you are here"), sky-blue road line underneath
+  stardr: `<rect width="100" height="100" rx="20" fill="#fff"/>
+    <rect x=".75" y=".75" width="98.5" height="98.5" rx="19.5" fill="none" stroke="#DCE3DF" stroke-width="1.5"/>
+    <path d="M10 22 H28 a28 28 0 0 1 0 56 H10 Z" fill="#00704A"/>
+    <path d="${star(28, 50, 13)}" fill="#E4002B"/>
+    <path d="M66 78 V22 h10 a12.5 12.5 0 0 1 0 25 h-10 M75 47 L90 78" fill="none" stroke="#00704A" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M10 88 H90" stroke="#41B6E6" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 6"/>`
+};
+
+const OPTS = [
+  ["between", "1 · Road between", "The D and R sit on either side of a road that runs up to the Chicago star. It has the most story of the four: you're on da road to the game."],
+  ["roadleg", "2 · Road leg R", "The R's leg turns into a road with a center line, heading off to the next field. It's playful, and the road is the hero."],
+  ["sign", "3 · Highway sign", "A green highway guide sign that says DR, with the Chicago star. It's the simplest of the four and the clearest at tiny sizes."],
+  ["stardr", "4 · Star D", "A solid green D holding the red Chicago star like a “you are here” pin, then an R, over a dashed road line. It's the cleanest, and it looks great on white."]
+];
+
+const svg = (id, size, cls = "") => `<svg class="${cls}" viewBox="0 0 100 100" width="${size}" height="${size}" style="border-radius:${size * .2}px">${MARKS[id]}</svg>`;
+document.getElementById("opts").innerHTML = OPTS.map(([id, name, why]) => `
+  <section class="card">
+    <h2>${name}</h2><p class="muted">${why}</p>
+    <div class="row">
+      ${svg(id, 130, "big")}
+      <div class="lockups">
+        <div class="lock dark">${svg(id, 52)}<span class="word">DA <span>Road</span></span></div>
+        <div class="lock light">${svg(id, 52)}<span class="word">DA <span>Road</span></span></div>
+      </div>
+    </div>
+    <div class="sizes">
+      <div>${svg(id, 64)}64 px</div><div>${svg(id, 40)}40 px</div><div>${svg(id, 32)}32 px</div><div>${svg(id, 16)}16 px tab</div>
+      <div class="phone"><div><i></i>Photos</div><div>${svg(id, 52)}DA Road</div><div><i></i>Maps</div></div>
+    </div>
+  </section>`).join("");
+</script>
+</body>
+</html>
