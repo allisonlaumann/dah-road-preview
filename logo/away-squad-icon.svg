@@ -1,16 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Away Squad app icon, rebuilt from the brand sheet: white "A" + orange S-pin on navy.
-       All shapes are vector paths (no font needed). -->
+  <!-- Away Squad app icon: white "A" + the S-pin from Away_Squad_Logo_Vector.svg, on navy.
+       All shapes (no font needed). -->
   <defs>
-    <linearGradient id="pin" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#FF7A3C"/><stop offset="1" stop-color="#F9472A"/>
+    <linearGradient id="pinOrange" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#FF7A3C"/>
+      <stop offset="1" stop-color="#F9472A"/>
     </linearGradient>
   </defs>
-  <rect width="100" height="100" rx="22" fill="#0B2A4A"/>
-  <path fill="#fff" fill-rule="evenodd" d="M9 80 L31 22 H46 L68 80 H54 L49.5 67 H27.5 L23 80 Z M31.5 55 H45.5 L38.5 35 Z"/>
-  <g transform="translate(52 14) scale(.68)">
-    <path fill="url(#pin)" d="M30 104 C30 104 0 64 0 36 A30 30 0 0 1 60 36 C60 64 30 104 30 104 Z"/>
-    <path fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"
-          d="M42 20 C37 13 19 13 18 24 C17 35 42 33 42 46 C42 58 22 59 16 51"/>
+  <rect width="100" height="100" rx="22" fill="#082A44"/>
+  <path fill="#fff" fill-rule="evenodd" d="M6 80 L26 24 H40 L60 80 H47.5 L43.5 68 H22.5 L18.5 80 Z M25.8 57 H40.2 L33 36 Z"/>
+  <g transform="translate(44.4 20) scale(.255)">
+    <path d="M112 0 C52 0 14 40 14 94 C14 142 46 176 83 207 L112 233 L141 207 C178 176 210 142 210 94 C210 40 172 0 112 0 Z" fill="url(#pinOrange)"/>
+    <path d="M153 58 C140 43 120 36 99 41 C76 47 66 65 72 83 C78 100 100 108 122 116 C146 125 158 137 155 153 C152 172 131 184 109 181 C91 179 77 170 67 158"
+          fill="none" stroke="#082A44" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="112" cy="83" r="20" fill="#082A44"/>
+    <circle cx="112" cy="83" r="9" fill="#FF7A3C"/>
   </g>
 </svg>

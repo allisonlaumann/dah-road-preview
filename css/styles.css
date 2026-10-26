@@ -5,7 +5,7 @@
    (Yellow is kept only for "heads up" warnings; green only for "good news" tags.)
    ============================================================ */
 :root {
-  --primary: #0B2A4A;      /* Navy — primary brand color */
+  --primary: #082A44;      /* Navy — matches Away_Squad_Logo_Vector.svg (brand sheet lists #0B2A4A) */
   --primary-2: #071E36;
   --turf: #E63B1E;         /* CTAs/links — a slightly deeper Red Orange so white text passes contrast */
   --turf-light: #FFE9E1;
@@ -59,7 +59,7 @@ p { margin: 0 0 .75em; }
 .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
 /* Wordmark: AWAY [S-pin] QUAD */
 .brand-name { display: flex; align-items: center; font-family: var(--head); font-weight: 800; font-size: 1.45rem; letter-spacing: -.01em; color: #fff; }
-.brand-pin { height: 1.3em; width: auto; margin: 0 -.03em; transform: translateY(.07em); }
+.brand-pin { height: 1.3em; width: auto; margin: 0 .1em; transform: translateY(.06em); }
 .me-chip {
   color: var(--primary); background: #fff; text-decoration: none; font-size: .85rem;
   padding: 6px 12px; border-radius: 999px; max-width: 50vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
