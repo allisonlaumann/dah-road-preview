@@ -2,8 +2,8 @@
 // SITE SETTINGS — change the name here and it updates everywhere.
 // ============================================================
 window.SITE = {
-  name: "DA Road",
-  tagline: "On da road again? Be ready.",
+  name: "Away Squad",
+  tagline: "Away game today? Be ready.",
   region: "Chicagoland: New Lenox to Libertyville, Rockford to Park Ridge"
 };
 

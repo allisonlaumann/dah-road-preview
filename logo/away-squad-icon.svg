@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Away Squad mark (working pick: "Varsity"): slanted AS, flag-blue speed stripes, Chicago star.
+       Letters are live text for now; trace them to outlines before final use. -->
+  <rect width="100" height="100" rx="20" fill="#00704A"/>
+  <text x="48" y="68" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, Arial, sans-serif" font-style="italic" font-weight="800" font-size="60" fill="#fff" letter-spacing="-1">AS</text>
+  <path d="M12 76 H84 L81 81 H9 Z" fill="#41B6E6"/>
+  <path d="M8 85 H80 L77 90 H5 Z" fill="#B3DDF2"/>
+  <path d="M84.00 14.00 L86.00 18.54 L90.93 18.00 L88.00 22.00 L90.93 26.00 L86.00 25.46 L84.00 30.00 L82.00 25.46 L77.07 26.00 L80.00 22.00 L77.07 18.00 L82.00 18.54Z" fill="#E4002B"/>
+</svg>

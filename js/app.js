@@ -609,7 +609,7 @@
     }
   });
 
-  // Logo: "DA" heavy white, "ROAD" lighter sky blue.
+  // Logo: first word heavy white, last word lighter sky blue.
   document.querySelectorAll("[data-site-name]").forEach((el) => (el.innerHTML = esc(SITE.name).replace(/ (\S+)$/, ' <span class="road">$1</span>')));
   document.title = SITE.name + " — " + SITE.tagline;
   window.addEventListener("hashchange", render);
