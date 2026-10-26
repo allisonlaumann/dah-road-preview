@@ -65,7 +65,7 @@ p { margin: 0 0 .75em; }
 
 .tabbar {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 20;
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(5, 1fr);
   background: #fff; border-top: 1px solid var(--line);
   padding-bottom: env(safe-area-inset-bottom);
 }
@@ -272,3 +272,14 @@ ul.clean li { margin-bottom: 4px; }
 /* "More than a spectator." line */
 .motto { font-family: var(--head); font-weight: 700; font-size: .95rem; text-transform: uppercase; letter-spacing: .12em; color: var(--sky-light) !important; margin: 0 0 8px !important; }
 .card-motto { font-family: var(--head); font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--sky-light); margin: 10px 0 0; }
+
+/* Marketing lines */
+.lead { font-family: var(--head); font-weight: 700; font-size: 1.25rem; color: var(--primary); text-transform: uppercase; letter-spacing: .02em; margin: 0 0 8px; }
+.site-foot { text-align: center; color: var(--muted); font-family: var(--head); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: .85rem; margin: 28px 0 8px; }
+
+/* Team meals */
+.meal .ad { font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--primary); }
+.menu { list-style: none; padding: 0; }
+.menu li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: 1px solid var(--line); }
+.menu li:first-child { border-top: 0; }
+.menu li b { white-space: nowrap; color: var(--primary); }

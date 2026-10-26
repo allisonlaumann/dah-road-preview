@@ -5,6 +5,19 @@ window.SITE = {
   name: "Away Squad",
   tagline: "Away game today? Be ready.",
   motto: "More than a spectator.",
+  // Marketing lines (from Allison). The ones marked * are used on the site.
+  lines: {
+    bold: "Own the Away Game.",                                   // * sign-up page
+    sportsParents: "Every Tournament. A Better Trip.",            // * tournaments page
+    localDiscovery: "Find More Around Every Game.",               // * "Featured nearby" box
+    businessFriendly: "Connecting Fans to Local Favorites.",      // * "Own a local business?" box
+    modernTech: "Your Game-Day Guide, Everywhere.",               // * footer
+    travel: "Every Away Game Has a Destination.",
+    fanCommunity: "Your People. Your Places. Your Game.",
+    shortPunchy: "Game On. Get Out. Explore.",
+    funEnergetic: "Play Away. Explore More.",
+    allInOne: "Everything Around the Game, All in One Place."
+  },
   region: "Chicagoland: New Lenox to Libertyville, Rockford to Park Ridge"
 };
 
@@ -136,6 +149,27 @@ window.DATA = {
         { name: "Rockton Hills boosters grill", venueId: "rockton-hills", what: "Hot dogs, brats, drinks", pay: ["Cash", "Venmo"] }
       ]
     }
+  ],
+
+  // Team meals: restaurants that take big team orders (SAMPLE: fictional businesses).
+  // In the live version, restaurants pay to be listed and receive requests by email/text.
+  teamMeals: [
+    { id: "m1", name: "Second Half Pizza", kind: "Pizza", town: "Libertyville", distance: "1.5 mi", venueIds: ["lakeview-north"], tournamentIds: [],
+      menu: [{ item: "Team pizza pack (1 large per 3 players)", price: "$9/person" }, { item: "Add garlic knots + Gatorade", price: "+$3/person" }],
+      minOrder: "10 people", leadTime: "30 min (call ahead between games)", options: ["Pickup", "Delivery to the field"], pay: ["Card", "Venmo"],
+      perk: "Free 2-liter on team orders" },
+    { id: "m2", name: "Maple & Main Diner", kind: "Breakfast & sandwiches", town: "Rockford", distance: "0.8 mi", venueIds: ["riverbend"], tournamentIds: ["fall-brawl"],
+      menu: [{ item: "Breakfast burrito tray", price: "$7/person" }, { item: "Boxed lunch (sandwich, chips, fruit, water)", price: "$11/person" }],
+      minOrder: "8 people", leadTime: "Order by 7 p.m. the night before", options: ["Pickup", "Delivery to the field"], pay: ["Card"],
+      perk: "Team boxes labeled with each player's name" },
+    { id: "m3", name: "Riverside Pasta Co.", kind: "Pasta & salads", town: "Rockford", distance: "2.4 mi", venueIds: ["riverbend", "rockton-hills"], tournamentIds: ["fall-brawl"],
+      menu: [{ item: "Pasta bar (2 pastas, salad, breadsticks)", price: "$12/person" }, { item: "Kids' pasta + juice box", price: "$8/person" }],
+      minOrder: "12 people", leadTime: "24 hours", options: ["Pickup", "Private room for team dinner"], pay: ["Card", "Cash"],
+      perk: "Private room seats 40 for a Saturday-night team dinner" },
+    { id: "m4", name: "Fieldhouse Coffee Co.", kind: "Coffee & bagels", town: "Roscoe", distance: "1.2 mi", venueIds: ["rockton-hills"], tournamentIds: ["fall-brawl"],
+      menu: [{ item: "Bagel + cream cheese box (dozen)", price: "$24" }, { item: "Coffee traveler (serves 10)", price: "$22" }, { item: "Hot chocolate traveler (serves 10)", price: "$20" }],
+      minOrder: "1 box", leadTime: "1 hour", options: ["Pickup", "Drive-thru pickup"], pay: ["Card", "Apple Pay"],
+      perk: "Free size upgrade with Away Squad" }
   ],
 
   featured: [

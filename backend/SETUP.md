@@ -7,11 +7,11 @@ you've done the steps that need you.
 
 ## What you do (about 15 minutes)
 
-1. **Create the business Gmail.** Something like `dahroad.team@gmail.com`. Submission
+1. **Create the business Gmail.** Something like `awaysquad.team@gmail.com`. Submission
    alerts and the "confirm your email" messages to parents come from here.
 2. **Create a Supabase account** at supabase.com with that Gmail. Choose the **Free** plan.
 3. **Create a project.**
-   - Name: `dahroad` (or whatever the final name is)
+   - Name: `away-squad`
    - Region: **East US (Ohio)**, the closest one to Chicago
    - Database password: let Supabase generate one, and save it in your password manager.
      Don't paste it into the chat.
@@ -33,7 +33,7 @@ you've done the steps that need you.
    - Parents' emails are never shown. Other parents see only first name, last initial, town and title.
 2. Turns on **email + password sign-in** with "confirm your email" and "forgot password"
    emails, branded with the site name.
-3. Loads the venues and the sample tournament into the database.
+3. Loads the 27 real venues into the database (`seed-venues.sql`). The made-up sample venues and tournament stay out of the real database.
 4. Switches the site from demo mode to the real database (one setting in `js/data.js`).
 5. Sets up the **"new submission" email to you.** When a parent sends a write-up, you get an
    email with an Approve link. This uses a small Supabase function plus a free email sender
@@ -47,4 +47,4 @@ you've done the steps that need you.
 | Supabase (database + sign-in) | Free tier. A free project pauses after a week with no visitors; one click wakes it. Upgrade ($25/mo) once real parents use it daily. |
 | GitHub Pages (hosting) | Free |
 | Resend (emails) | Free up to 3,000/month |
-| Domain (dahroad.com + .app) | ~$25/year |
+| Domain (awaysquad.com + .app) | ~$25/year |

@@ -149,7 +149,7 @@
   // ---------- shared page pieces ----------
   function featuredHTML(items) {
     if (!items.length) return "";
-    return `<section class="card" id="nearby"><h2>📍 Featured nearby</h2>
+    return `<section class="card" id="nearby"><h2>📍 Featured nearby</h2><p class="hint" style="margin-top:-4px">${esc(SITE.lines.localDiscovery)}</p>
       ${items.map((f) => `<div class="featured-item"><div class="ad">Featured · ${esc(f.kind)} · ${esc(f.distance)}</div>
         <h3>${esc(f.name)} <span class="tag yellow">sample</span></h3><p style="margin:0">${esc(f.blurb)}</p>
         <p class="offer">🎟️ ${esc(brand(f.offer))}</p></div>`).join("")}
@@ -293,13 +293,14 @@
       ${v.insiderTip ? `<section class="card tip"><h2>💡 Insider tip</h2><p>${esc(v.insiderTip)}</p></section>`
         : sectionHTML(v, "", "💡 Insider tip", "", "What do you wish you'd known the first time?")}
       ${tourneys.length ? `<h2 class="section-title">Tournaments here</h2>${tourneys.map(tourneyCardHTML).join("")}` : ""}
+      ${teamMealsTeaserHTML({ venueId: id }, "v=" + encodeURIComponent(id))}
       ${featuredHTML(D.featured.filter((f) => f.venueIds.includes(id)))}
       ${leaderboardHTML(id)}
       <p class="hint" style="text-align:center">Something out of date? <a href="#/submit">Suggest an edit</a></p>`;
   }
 
   function tournamentsPage() {
-    return `<div class="page-head"><h1>Tournaments</h1><p class="meta">Upcoming in ${esc(SITE.region)}.</p></div>
+    return `<div class="page-head"><h1>Tournaments</h1><p class="lead">${esc(SITE.lines.sportsParents)}</p><p class="meta">Upcoming in ${esc(SITE.region)}.</p></div>
       ${D.tournaments.map(tourneyCardHTML).join("")}
       <a class="btn ghost block" href="#/submit?t=tournament">+ Add a tournament</a>`;
   }
@@ -342,13 +343,14 @@
         ...(t.parkingPass.buyAhead ? ["Parking pass bought ahead"] : []),
         ...venueIds.flatMap((vid) => venue(vid).pack || [])])], "tourney-" + id, multi ? "Pack for the weekend (both venues)" : "Pack for the day")}
       ${liveFeedHTML({ tournamentId: id, venueIds })}
+      ${teamMealsTeaserHTML({ tournamentId: id }, "t=" + encodeURIComponent(id))}
       ${featuredHTML(D.featured.filter((f) => f.tournamentIds.includes(id)))}
       <p class="hint" style="text-align:center">Know something we don't? <a href="#/submit?t=tournament">Add tournament info</a></p>`;
   }
 
   function joinPage() {
     const sports = ["Soccer", "Lacrosse", "Baseball", "Softball", "Basketball", "Volleyball", "Hockey", "Football"];
-    return `<div class="page-head"><h1>Join ${esc(SITE.name)}</h1>
+    return `<div class="page-head"><h1>Join ${esc(SITE.name)}</h1><p class="lead">${esc(SITE.lines.bold)}</p>
         <p><b>You're more than a spectator.</b> You're already here all day for your kid. Post live updates, earn badges, and get credit every time you save another parent a headache.</p></div>
       <form class="card" data-form="join">
         <div class="row2">
@@ -455,7 +457,7 @@
         <label>Anything else parents should know?</label><textarea name="notes"></textarea>
         ${contact}
         <button class="btn block" type="submit" style="margin-top:14px">Send for review</button></form>`}
-      <div class="card"><h2>📍 Own a local business?</h2>
+      <div class="card"><h2>📍 Own a local business?</h2><p class="lead">${esc(SITE.lines.businessFriendly)}</p>
         <p style="margin:0">Get featured on venue and tournament pages where sports families are looking for food, coffee and hotels. Email us to get listed. (Self-serve sign-up comes later.)</p></div>`;
   }
 
@@ -474,6 +476,103 @@
       </div>`).join("") : `<p class="empty">Nothing waiting. Try the <a href="#/submit">Add info</a> form to see how a submission shows up here.</p>`}`;
   }
 
+  // ---------- Team meals ----------
+  // Restaurants near a venue or tournament that take big team orders.
+  const mealSpotsFor = (ctx) => D.teamMeals.filter((r) =>
+    (!ctx.venueId || r.venueIds.includes(ctx.venueId)) && (!ctx.tournamentId || r.tournamentIds.includes(ctx.tournamentId)));
+
+  function teamMealsTeaserHTML(ctx, q) {
+    const spots = mealSpotsFor(ctx);
+    if (!spots.length) return `<p class="hint" style="text-align:center">🍕 Team meals: no partner restaurants here yet. <a href="#/meals">See how team orders work</a></p>`;
+    return `<section class="card" id="meals"><h2>🍕 Team meals near here</h2>
+      <p class="hint" style="margin-top:-4px">Feed the whole squad between games. One request, and the restaurant confirms.</p>
+      ${spots.map((r) => `<div class="food-item"><b>${esc(r.name)}</b> <span class="tag yellow">sample</span><br>${esc(r.kind)} · ${esc(r.distance)} · min ${esc(r.minOrder)}</div>`).join("")}
+      <a class="btn block" style="margin-top:10px" href="#/meals?${q}">Plan a team meal</a></section>`;
+  }
+
+  function mealCardHTML(r, q) {
+    return `<section class="card meal">
+      <div class="ad">Team meals · ${esc(r.kind)} · ${esc(r.town)} · ${esc(r.distance)}</div>
+      <h2 style="margin-top:4px">${esc(r.name)} <span class="tag yellow">sample</span></h2>
+      <ul class="clean menu">${r.menu.map((m) => `<li><span>${esc(m.item)}</span><b>${esc(m.price)}</b></li>`).join("")}</ul>
+      <p class="hint" style="margin:8px 0 6px">Minimum ${esc(r.minOrder)} · Lead time: ${esc(r.leadTime)}</p>
+      <div class="pay">${r.options.map((o) => `<span class="tag green">${esc(o)}</span>`).join("")}${r.pay.map((p) => `<span class="tag">${esc(p)}</span>`).join("")}</div>
+      ${r.perk ? `<p class="offer" style="margin:8px 0 0">🎟️ ${esc(brand(r.perk))}</p>` : ""}
+      <a class="btn block" style="margin-top:12px" href="#/meals/request?r=${r.id}${q ? "&" + q : ""}">Request a team order</a>
+    </section>`;
+  }
+
+  function mealsPage(params) {
+    const t = params.get("t"), v = params.get("v");
+    const ctx = { tournamentId: t || null, venueId: v || null };
+    const list = mealSpotsFor(ctx);
+    const q = t ? "t=" + encodeURIComponent(t) : v ? "v=" + encodeURIComponent(v) : "";
+    const label = t ? tourney(t)?.name : v ? venue(v)?.name : null;
+    const places = [...D.tournaments.filter((x) => D.teamMeals.some((r) => r.tournamentIds.includes(x.id))).map((x) => ["t", x.id, "🏆 " + x.name]),
+                    ...D.venues.filter((x) => D.teamMeals.some((r) => r.venueIds.includes(x.id))).map((x) => ["v", x.id, "📍 " + x.name])];
+    const mine = store.get("mealRequests", []);
+    return `<div class="page-head"><h1>Team meals</h1>
+        <p class="lead">Feed the whole squad. Skip the scramble.</p>
+        <p>Team parent in charge of food? Pick a restaurant near the field, send one request with your headcount and time, and the restaurant confirms. Then share the plan with the team in one tap.</p></div>
+      <label for="mealWhere" style="margin-top:0">Where are you playing?</label>
+      <select id="mealWhere"><option value="">All partner restaurants</option>
+        ${places.map(([k, id, name]) => `<option value="${k}=${id}" ${(k === "t" && id === t) || (k === "v" && id === v) ? "selected" : ""}>${esc(name)}</option>`).join("")}</select>
+      <h2 class="section-title">${label ? "Near " + esc(label) : "Partner restaurants"}</h2>
+      ${list.length ? list.map((r) => mealCardHTML(r, q)).join("") : `<p class="empty">No partner restaurants here yet.</p>`}
+      ${mine.length ? `<h2 class="section-title">Your team orders</h2>${mine.map(mealRequestSummaryHTML).join("")}` : ""}
+      <div class="card"><h2>🍽️ Own a restaurant near the fields?</h2>
+        <p class="lead">${esc(SITE.lines.businessFriendly)}</p>
+        <p style="margin:0">Get team orders from parents who are already nearby and hungry: 10 to 40 people at a time, every tournament weekend. <a href="#/submit">Get listed</a>.</p></div>`;
+  }
+
+  function mealRequestSummaryHTML(m) {
+    const r = D.teamMeals.find((x) => x.id === m.restaurantId) || {};
+    return `<div class="card review-item ${m.status === "Confirmed" ? "approved" : ""}">
+      <span class="tag green">${esc(m.status)}</span> <small class="hint">${timeAgo(m.ts)}</small>
+      <h3 style="margin:6px 0 2px">${esc(r.name || "")}</h3>
+      <p style="margin:0">${esc(m.date)} at ${esc(m.time)} · ${esc(m.players)} players${m.adults ? " + " + esc(m.adults) + " adults" : ""} · ${esc(m.handoff)}</p>
+      <p style="margin:10px 0 0"><button class="btn small ghost" data-act="share-meal" data-id="${esc(m.id)}">📲 Share with the team</button></p>
+    </div>`;
+  }
+
+  function mealRequestPage(params) {
+    const r = D.teamMeals.find((x) => x.id === params.get("r"));
+    if (!r) return notFound();
+    const m = me() || {};
+    const t = params.get("t"), v = params.get("v");
+    const events = [...D.tournaments.filter((x) => r.tournamentIds.includes(x.id)).map((x) => ["t:" + x.id, x.name]),
+                    ...D.venues.filter((x) => r.venueIds.includes(x.id)).map((x) => ["v:" + x.id, x.name])];
+    return `<a class="back" href="#/meals${t ? "?t=" + esc(t) : v ? "?v=" + esc(v) : ""}">← Team meals</a>
+      <div class="page-head"><h1>Team order</h1><p class="lead">${esc(r.name)}</p>
+        <p class="hint">${esc(r.kind)} · ${esc(r.town)} · minimum ${esc(r.minOrder)} · lead time ${esc(r.leadTime)}</p></div>
+      <form class="card" data-form="meal" data-restaurant="${r.id}">
+        <label>For which game?</label>
+        <select name="event">${events.map(([val, name]) => `<option value="${val}" ${val === "t:" + t || val === "v:" + v ? "selected" : ""}>${esc(name)}</option>`).join("")}</select>
+        <div class="row2"><div><label>Date</label><input name="date" type="date" required></div>
+          <div><label>Ready by</label><input name="time" type="time" required></div></div>
+        <div class="row2"><div><label>Players</label><input name="players" type="number" min="1" max="200" required></div>
+          <div><label>Adults <span class="hint">(optional)</span></label><input name="adults" type="number" min="0" max="200"></div></div>
+        <label>Pickup or delivery?</label>
+        <select name="handoff">${r.options.map((o) => `<option>${esc(o)}</option>`).join("")}</select>
+        <label>What would you like?</label>
+        <div class="checks">${r.menu.map((x) => `<label><input type="checkbox" name="items" value="${esc(x.item)}">${esc(x.item)} <span class="hint">${esc(x.price)}</span></label>`).join("")}</div>
+        <label>Allergies or dietary needs <span class="hint">— no names needed, just counts</span></label>
+        <textarea name="dietary" placeholder="e.g. 2 gluten-free, 1 nut allergy, 3 vegetarian"></textarea>
+        <label>Budget per person <span class="hint">(optional)</span></label><input name="budget" placeholder="$10">
+        <div class="row2"><div><label>Your name</label><input name="name" required value="${esc(m.first ? m.first + " " + m.last + "." : "")}"></div>
+          <div><label>Phone <span class="hint">for the restaurant</span></label><input name="phone" type="tel" autocomplete="tel"></div></div>
+        <label>Email</label><input name="email" type="email" required value="${esc(m.email || "")}">
+        <button class="btn block" type="submit" style="margin-top:14px">Send request to ${esc(r.name)}</button>
+        <p class="hint" style="margin:8px 0 0;text-align:center">Demo: nothing is sent yet. In the live version the restaurant gets your request by email or text and confirms the price and time.</p>
+      </form>`;
+  }
+
+  function mealShareText(m) {
+    const r = D.teamMeals.find((x) => x.id === m.restaurantId) || {};
+    return `🍕 Team meal: ${r.name}, ${m.date} ready by ${m.time} (${m.handoff}). ${m.players} players${m.adults ? " + " + m.adults + " adults" : ""}.` +
+      (m.budget ? ` About ${m.budget}/person.` : "") + ` Planned on ${SITE.name}.`;
+  }
+
   function notFound() {
     return `<div class="page-head"><h1>Not found</h1><p><a href="#/">Back to venues</a></p></div>`;
   }
@@ -488,11 +587,12 @@
     const pages = {
       "": homePage, venue: () => venuePage(id), tournaments: tournamentsPage,
       tournament: () => tournamentPage(id), submit: () => submitPage(params.get("t") || "venue", venue(params.get("v"))),
-      me: mePage, join: () => me() ? mePage() : joinPage(), signin: () => me() ? mePage() : signinPage(), review: reviewPage
+      me: mePage, join: () => me() ? mePage() : joinPage(), signin: () => me() ? mePage() : signinPage(), review: reviewPage,
+      meals: () => id === "request" ? mealRequestPage(params) : mealsPage(params)
     };
-    app.innerHTML = (pages[page] || notFound)();
+    app.innerHTML = (pages[page] || notFound)() + `<p class="site-foot">${esc(SITE.name)} · ${esc(SITE.lines.modernTech)}</p>`;
     if (page === "") renderResults();
-    const tab = { "": "home", venue: "home", tournaments: "tournaments", tournament: "tournaments", submit: "submit", me: "me", join: "me", review: "me" }[page];
+    const tab = { "": "home", venue: "home", tournaments: "tournaments", tournament: "tournaments", submit: "submit", me: "me", join: "me", review: "me", meals: "meals" }[page];
     document.querySelectorAll(".tabbar a").forEach((a) => a.classList.toggle("on", a.dataset.tab === tab));
     const m = me();
     const chip = document.getElementById("meChip");
@@ -536,6 +636,15 @@
         if (confirm("Sign out? Your demo posts stay in this browser.")) { store.set("signedin", false); render(); }
         break;
       }
+      case "share-meal": {
+        const m = store.get("mealRequests", []).find((x) => x.id === id);
+        if (!m) break;
+        const text = mealShareText(m);
+        if (navigator.share) navigator.share({ text }).catch(() => {});
+        else if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => toast("Copied. Paste it into your team chat."), () => prompt("Copy this for your team:", text));
+        else prompt("Copy this for your team:", text);
+        break;
+      }
       case "forgot": {
         e.preventDefault();
         toast("In the live site, we'll email you a reset link.");
@@ -554,6 +663,7 @@
   document.addEventListener("change", (e) => {
     if (e.target.id === "fSport") { filters.sport = e.target.value; renderResults(); }
     if (e.target.id === "fTown") { filters.town = e.target.value; renderResults(); }
+    if (e.target.id === "mealWhere") { location.hash = "#/meals" + (e.target.value ? "?" + e.target.value : ""); }
     if (e.target.dataset.pack) {
       const all = store.get("pack", {}), key = e.target.dataset.pack;
       const set = new Set(all[key] || []);
@@ -598,6 +708,19 @@
       const after = levelFor(myStats()).name;
       toast(after !== before ? `🎉 Level up! You're now a ${after}` : "Posted! +10 points");
       rerender();
+    }
+    if (f.dataset.form === "meal") {
+      const [kind, ev] = (data.event || ":").split(":");
+      const m = { id: "q" + uid(), restaurantId: f.dataset.restaurant, ...data, items: new FormData(f).getAll("items"),
+        [kind === "t" ? "tournamentId" : "venueId"]: ev, status: "Sent to restaurant", ts: Date.now() };
+      store.set("mealRequests", [m, ...store.get("mealRequests", [])]);
+      app.innerHTML = `<div class="page-head" style="text-align:center;padding-top:40px">
+        <h1>🍕 Request sent</h1>
+        <p>${esc(D.teamMeals.find((x) => x.id === m.restaurantId).name)} will confirm the price and time with you at <b>${esc(m.email)}</b>${m.phone ? " or by text" : ""}.</p>
+        <p class="hint">Team-parent MVP move. +10 points on your Fan Card.</p>
+        <p><button class="btn" data-act="share-meal" data-id="${m.id}">📲 Share with the team</button></p>
+        <a class="btn ghost" href="#/meals">Back to team meals</a></div>`;
+      scrollTo(0, 0);
     }
     if (f.dataset.form === "submit") {
       const s = { id: "s" + uid(), kind: f.dataset.kind, fields: data, status: "pending", ts: Date.now() };
