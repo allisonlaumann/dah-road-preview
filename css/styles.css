@@ -268,3 +268,7 @@ ul.clean li { margin-bottom: 4px; }
 /* Empty venue sections waiting for a parent's tip */
 .card.gap { border-style: dashed; background: #FAFCFB; }
 .card.gap h2 { color: var(--muted); }
+
+/* "More than a spectator." line */
+.motto { font-family: var(--head); font-weight: 700; font-size: .95rem; text-transform: uppercase; letter-spacing: .12em; color: var(--sky-light) !important; margin: 0 0 8px !important; }
+.card-motto { font-family: var(--head); font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--sky-light); margin: 10px 0 0; }

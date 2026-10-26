@@ -4,6 +4,7 @@
 window.SITE = {
   name: "Away Squad",
   tagline: "Away game today? Be ready.",
+  motto: "More than a spectator.",
   region: "Chicagoland: New Lenox to Libertyville, Rockford to Park Ridge"
 };
 

@@ -222,6 +222,7 @@
   function homePage() {
     const recent = updates(() => true).slice(0, 3);
     return `<section class="hero">
+        <p class="motto">${esc(SITE.name)} · ${esc(SITE.motto)}</p>
         <h1>${esc(SITE.tagline).replace(/([.?!]) /g, "$1<br>")}</h1>
         <p>Where to park, what to pack, where the bathrooms are and what's happening right now — from parents who've been here since 7 a.m.</p>
         <input class="search" id="q" type="search" placeholder="Search a venue or town" value="${esc(filters.q)}" autocomplete="off">
@@ -348,7 +349,7 @@
   function joinPage() {
     const sports = ["Soccer", "Lacrosse", "Baseball", "Softball", "Basketball", "Volleyball", "Hockey", "Football"];
     return `<div class="page-head"><h1>Join ${esc(SITE.name)}</h1>
-        <p>You're already here all day for your kid. Post live updates, earn badges, and get credit every time you save another parent a headache.</p></div>
+        <p><b>You're more than a spectator.</b> You're already here all day for your kid. Post live updates, earn badges, and get credit every time you save another parent a headache.</p></div>
       <form class="card" data-form="join">
         <div class="row2">
           <div><label for="jf">First name</label><input id="jf" name="first" required autocomplete="given-name"></div>
@@ -394,6 +395,7 @@
         <p class="sub">${(m.sports || []).map(esc).join(" · ")}</p>
         <div class="bar"><i style="width:${pct}%"></i></div>
         <small>${lvl.points} pts${lvl.next ? ` · ${lvl.next.min - lvl.points} to ${lvl.next.name}` : " · Top level!"}</small>
+        <p class="card-motto">${esc(SITE.name)} · ${esc(SITE.motto)}</p>
       </div>
       <div class="stats">
         <div class="stat"><b>${s.posts}</b><span>Reports posted</span></div>
