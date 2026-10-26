@@ -4,24 +4,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
   body { margin:0; padding:24px; background:#F7F8FA; font:15px Inter, sans-serif; color:#2E3A46; }
-  h2 { font-family: Montserrat; color:#082A44; margin:24px 0 8px; }
-  .box { padding:14px; border-radius:14px; margin-bottom:12px; max-width:760px; }
-  .box svg { width:100%; height:auto; display:block; }
+  h2 { font-family: Montserrat; color:#082A44; margin:22px 0 8px; font-size:1.1rem; }
+  .box { padding:12px; border-radius:14px; margin-bottom:10px; max-width:760px; }
+  .box img { width:100%; height:auto; display:block; }
   .navy { background:#082A44; } .light { background:#fff; border:1px solid #DDE1E6; }
   .row { display:flex; gap:20px; align-items:flex-end; flex-wrap:wrap; }
   .row img { display:block; }
 </style></head>
 <body>
-  <h2>Your file as sent</h2><div class="box light" data-svg="away-squad-logo-vector.svg"></div>
-  <h2>Spacing fixed</h2><div class="box light" data-svg="away-squad-logo-fixed.svg"></div>
-  <div class="box navy" data-svg="away-squad-logo-fixed-white.svg"></div>
-  <h2>App icon (your pin)</h2>
-  <div class="row"><img src="away-squad-icon.svg" width="160" height="160" alt=""><img src="away-squad-icon.svg" width="64" height="64" alt=""><img src="away-squad-icon.svg" width="32" height="32" alt=""><img src="away-squad-icon.svg" width="16" height="16" alt=""></div>
-<script>
-  // Inline the SVGs so they use this page's Montserrat font.
-  document.querySelectorAll("[data-svg]").forEach(async (el) => {
-    const t = await (await fetch(el.dataset.svg + "?v=" + Date.now())).text();
-    el.innerHTML = t.replace(/ width="1600" height="420"/, "");
-  });
-</script>
+  <h2>Outlined logo, as sent</h2><div class="box light"><img src="away-squad-logo-outlined.svg?v=4" alt=""></div>
+  <h2>Outlined logo, spacing fixed</h2>
+  <div class="box light"><img src="away-squad-logo-outlined-fixed.svg?v=4" alt=""></div>
+  <div class="box navy"><img src="away-squad-logo-outlined-fixed-white.svg?v=4" alt=""></div>
+  <h2>App icon (yours) at real sizes</h2>
+  <div class="row"><img src="away-squad-icon.svg?v=4" width="160" height="160" alt=""><img src="away-squad-icon.svg?v=4" width="64" height="64" alt=""><img src="away-squad-icon.svg?v=4" width="32" height="32" alt=""><img src="away-squad-icon.svg?v=4" width="16" height="16" alt="">
+    <img src="away-squad-app-icon-store.svg?v=4" width="120" height="120" alt="" style="border:1px dashed #999"></div>
+  <p style="font-size:.85rem">Last one: the full-square App Store / Google Play version (the stores round the corners themselves).</p>
 </body></html>
