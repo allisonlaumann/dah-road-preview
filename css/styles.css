@@ -1,27 +1,29 @@
 /* ============================================================
-   COLORS — Chicago greens: highway-sign green, Chicago River green,
-   and the city flag's sky blue + star red. Change these lines to rebrand.
+   COLORS — Away Squad brand guide v1.0: Navy, Orange, Red Orange,
+   Off White, Charcoal. Change these lines to rebrand.
    High contrast on purpose: it has to read in bright sun.
-   (Yellow is kept only for "heads up" warnings.)
+   (Yellow is kept only for "heads up" warnings; green only for "good news" tags.)
    ============================================================ */
 :root {
-  --primary: #00704A;      /* highway-sign green */
-  --primary-2: #005A3B;
-  --turf: #007A3D;         /* buttons — darker River green so white text stays readable */
-  --turf-light: #E3F4EA;
-  --sky: #41B6E6;          /* Chicago flag blue */
-  --sky-light: #B3DDF2;
-  --star: #E4002B;         /* Chicago star red */
+  --primary: #0B2A4A;      /* Navy — primary brand color */
+  --primary-2: #071E36;
+  --turf: #E63B1E;         /* CTAs/links — a slightly deeper Red Orange so white text passes contrast */
+  --turf-light: #FFE9E1;
+  --sky: #FF7A3C;          /* Orange — energy, highlights */
+  --sky-light: #FFA57A;    /* light Orange for accents on navy */
+  --star: #F9472A;         /* Red Orange */
+  --ok: #1E7A4C;           /* "good news" tags (free parking, buy ahead) */
+  --ok-light: #E3F4EA;
   --alert: #FFC83D;
   --alert-light: #FFF6DB;
-  --red: #E4002B;
-  --ink: #111418;
-  --muted: #555C66;
+  --red: #F9472A;
+  --ink: #2E3A46;          /* Charcoal — text */
+  --muted: #5A6673;
   --line: #DDE1E6;
-  --bg: #F4F6F8;
+  --bg: #F7F8FA;           /* Off White */
   --card: #FFFFFF;
   --radius: 14px;
-  --head: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --head: "Montserrat", "Arial", sans-serif;
   --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
@@ -35,10 +37,10 @@ body {
   padding-bottom: calc(76px + env(safe-area-inset-bottom));
 }
 a { color: var(--turf); font-weight: 600; }
-h1, h2, h3 { font-family: var(--head); line-height: 1.05; margin: 0 0 .4em; letter-spacing: .01em; }
-h1 { font-size: 2.3rem; font-weight: 800; text-transform: uppercase; }
-h2 { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; }
-h3 { font-size: 1.2rem; font-weight: 700; }
+h1, h2, h3 { font-family: var(--head); line-height: 1.12; margin: 0 0 .4em; letter-spacing: -.01em; color: var(--primary); }
+h1 { font-size: 2rem; font-weight: 800; }
+h2 { font-size: 1.25rem; font-weight: 700; }
+h3 { font-size: 1.08rem; font-weight: 700; }
 p { margin: 0 0 .75em; }
 
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
@@ -55,9 +57,9 @@ p { margin: 0 0 .75em; }
   background: var(--primary); color: #fff; padding: 10px 16px;
 }
 .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
-.brand-mark { width: 34px; height: 34px; flex: none; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,.18); border-radius: 8px; }
-.brand-name { font-family: var(--head); font-weight: 800; font-size: 1.7rem; letter-spacing: .02em; text-transform: uppercase; }
-.brand-name .road { font-weight: 600; color: var(--sky-light); }
+/* Wordmark: AWAY [S-pin] QUAD */
+.brand-name { display: flex; align-items: center; font-family: var(--head); font-weight: 800; font-size: 1.45rem; letter-spacing: -.01em; color: #fff; }
+.brand-pin { height: 1.3em; width: auto; margin: 0 -.03em; transform: translateY(.07em); }
 .me-chip {
   color: var(--primary); background: #fff; text-decoration: none; font-size: .85rem;
   padding: 6px 12px; border-radius: 999px; max-width: 50vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -131,7 +133,7 @@ label { display: block; font-weight: 600; font-size: .92rem; margin: 12px 0 4px;
   display: inline-block; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
   color: var(--primary); background: #E3F1EA; padding: 3px 8px; border-radius: 6px; margin: 0 4px 4px 0;
 }
-.tag.green { background: var(--turf-light); color: var(--turf); }
+.tag.green { background: var(--ok-light); color: var(--ok); }
 .tag.yellow { background: var(--alert-light); color: #7A5600; }
 .tag.red { background: #FDECEC; color: var(--red); }
 
@@ -283,3 +285,21 @@ ul.clean li { margin-bottom: 4px; }
 .menu li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: 1px solid var(--line); }
 .menu li:first-child { border-top: 0; }
 .menu li b { white-space: nowrap; color: var(--primary); }
+
+/* Tagline: "AS IF YOU WERE HOME" with AS in the logo's sky blue */
+.hero h1.tagline .as { color: var(--sky-light); }
+.hero .subline { font-family: var(--head); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; color: #fff !important; margin: 0 0 6px !important; }
+
+/* ---------- Brand v1.0 tweaks ---------- */
+.hero h1, .verdict h2, .player-card h1, .warning h2 { color: #fff; }
+.warning h2, .tip h2 { color: var(--ink); }
+.tip h2 { color: #7A5600; }
+.hero p { color: #D5DEE8; }
+.player-card .sub, .player-card small { color: #D5DEE8; }
+.lead { text-transform: none; font-weight: 800; letter-spacing: -.01em; color: var(--turf); }
+.motto { letter-spacing: .18em; font-size: .78rem; }
+.site-foot { letter-spacing: .18em; font-size: .72rem; }
+.stop .day { font-size: .95rem; }
+.player-card { background: linear-gradient(150deg, var(--primary) 0%, var(--primary-2) 65%, var(--sky) 170%); }
+
+.hero h1 { font-size: 1.85rem; text-wrap: balance; }

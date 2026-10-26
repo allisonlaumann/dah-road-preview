@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 104">
+  <!-- The "S" pin from the Away Squad wordmark (orange gradient pin with a white S). -->
+  <defs>
+    <linearGradient id="pin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FF7A3C"/><stop offset="1" stop-color="#F9472A"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#pin)" d="M30 104 C30 104 0 64 0 36 A30 30 0 0 1 60 36 C60 64 30 104 30 104 Z"/>
+  <path fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"
+        d="M42 20 C37 13 19 13 18 24 C17 35 42 33 42 46 C42 58 22 59 16 51"/>
+</svg>

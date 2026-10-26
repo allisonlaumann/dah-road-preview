@@ -3,7 +3,8 @@
 // ============================================================
 window.SITE = {
   name: "Away Squad",
-  tagline: "Away game today? Be ready.",
+  tagline: "Know before you go.",
+  subline: "Your road game playbook",
   motto: "More than a spectator.",
   // Marketing lines (from Allison). The ones marked * are used on the site.
   lines: {
@@ -11,7 +12,10 @@ window.SITE = {
     sportsParents: "Every Tournament. A Better Trip.",            // * tournaments page
     localDiscovery: "Find More Around Every Game.",               // * "Featured nearby" box
     businessFriendly: "Connecting Fans to Local Favorites.",      // * "Own a local business?" box
-    modernTech: "Your Game-Day Guide, Everywhere.",               // * footer
+    modernTech: "Your Game-Day Guide, Anywhere.",                 // * footer (primary tagline, brand guide)
+    playbook: "Your Road Game Playbook.",                        // * home page, above the headline
+    knowBefore: "Know Before You Go.",                           // * home headline
+    asIfHome: "As If You Were Home",
     travel: "Every Away Game Has a Destination.",
     fanCommunity: "Your People. Your Places. Your Game.",
     shortPunchy: "Game On. Get Out. Explore.",

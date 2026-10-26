@@ -222,8 +222,8 @@
   function homePage() {
     const recent = updates(() => true).slice(0, 3);
     return `<section class="hero">
-        <p class="motto">${esc(SITE.name)} · ${esc(SITE.motto)}</p>
-        <h1>${esc(SITE.tagline).replace(/([.?!]) /g, "$1<br>")}</h1>
+        <p class="motto">${esc(SITE.subline)}</p>
+        <h1 class="tagline">${esc(SITE.tagline).replace(/^(As)\b/i, '<span class="as">$1</span>')}</h1>
         <p>Where to park, what to pack, where the bathrooms are and what's happening right now — from parents who've been here since 7 a.m.</p>
         <input class="search" id="q" type="search" placeholder="Search a venue or town" value="${esc(filters.q)}" autocomplete="off">
         <div class="chips" style="margin-top:12px">
@@ -734,8 +734,6 @@
     }
   });
 
-  // Logo: first word heavy white, last word lighter sky blue.
-  document.querySelectorAll("[data-site-name]").forEach((el) => (el.innerHTML = esc(SITE.name).replace(/ (\S+)$/, ' <span class="road">$1</span>')));
   document.title = SITE.name + " — " + SITE.tagline;
   window.addEventListener("hashchange", render);
   render();
